@@ -1,0 +1,27 @@
+﻿# Root
+node_modules/
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.railway.example
+
+# Node build artifacts
+apps/api/dist/
+web/backend/api/dist/
+
+# Flutter
+.dart_tool/
+build/
+app/frontend/flutter_app/build/
+
+# Temp media
+temp/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
