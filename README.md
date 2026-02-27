@@ -1,214 +1,107 @@
-# GigBit — Gig Worker Payment & Benefits Platform
+# GigBit - Gig Worker Payment & Benefits Platform
 
-Stop juggling fragmented tools for gig workers. Run one connected platform for payouts, protection, and approvals.
+GigBit is a full-stack fintech platform for gig workers that unifies payouts, protection, and approvals across mobile and web.
 
-GigBit is a full-stack fintech platform for gig workers with a Flutter mobile app, web landing/admin portals, and a shared Node.js API backend.
+**Journey:** Earn -> Sync -> Withdraw -> Claim -> Manage
 
-Earn → Sync → Withdraw → Claim → Manage.
+## Current Hackathon Status
 
----
+- Project is implemented end-to-end
+- Team size: 5
+- Contributors split:
+  - 3 members on App
+  - 2 members on Web
+- Working model: branch-based development with periodic PR updates for inspection
 
 ## Problem
 
-Gig workers and operations teams typically manage critical finance workflows across disconnected systems:
+Gig workers and operations teams often rely on disconnected tools for core finance workflows:
 
-- Manual earning reconciliation from multiple gig platforms  
-- Delayed withdrawals and no rollover-based limits  
-- Separate channels for loan and insurance requests  
-- Poor visibility for approvals and claims history  
-- Weak real-time sync between app and admin operations  
-
-Because workflows are split across tools:
-
-- Cash-flow decisions are delayed  
-- Trust in payout visibility drops  
-- Support and operations overhead increases  
-- Financial benefits remain underused  
-
-### Root Cause
-
-Gig worker finance is treated as separate modules instead of one continuous worker-to-ops transaction pipeline.
-
----
+- Earnings reconciliation across multiple platforms
+- Delayed withdrawals and poor withdrawable balance visibility
+- Separate loan and insurance request channels
+- Weak approval/status visibility for workers
+- Manual operational overhead for admins
 
 ## Solution
 
-GigBit unifies worker finance operations into one integrated system:
+GigBit provides one connected financial operations system:
 
-- Mobile app for workers (withdrawals, loans, insurance, notifications)  
-- Web portals for customer/admin operations  
-- Shared backend for consistency across channels  
-- PostgreSQL + Redis for transactional reliability and speed  
+- Worker Mobile App (Flutter): withdrawals, loans, insurance, notifications
+- Web Portals: product landing + admin operations
+- Shared Backend (Node.js + TypeScript): consistent business logic
+- Reliable Data Layer: PostgreSQL + Redis
 
-No fragmented state.  
-No duplicate workflows.  
-No manual cross-tool reconciliation.
+## Repository Structure
 
----
+```txt
+GigBit1/
+  app/
+    backend/
+    database/
+    frontend/
+      flutter_app/
+    releases/
+  web/
+    backend/
+      api/
+    database/
+    frontend/
+      assets/
+  docs/
+    screenshots/
+    progress-log.md
+    architecture.md
+  scripts/
+  README.md
+  LICENSE
+```
 
-## Installation
+## Team Contribution Split
 
-1. Clone repository  
-2. Install root dependencies  
-3. Start infrastructure (Postgres + Redis)  
-4. Run backend API  
-5. Run web frontend and Flutter app
+### App Team (3 Members)
 
----
+1. Payouts, wallet, transaction lifecycle
+2. Micro-insurance + emergency loan flows
+3. Expense tracking + tax assistance workflows
 
-## Usage
+### Web Team (2 Members)
 
-1. Worker logs in via app  
-2. Syncs platforms and views withdrawable balance  
-3. Submits withdrawal / loan / insurance requests  
-4. Admin reviews via web admin portal  
-5. Status updates sync back to app immediately
-
----
-
-## GigBit automatically supports:
-
-- Multi-platform worker earnings sync  
-- Withdrawal limit + rollover logic  
-- Loan and insurance claim lifecycles  
-- Admin approvals/rejections with status propagation  
-- Cross-channel consistency (web + app)
-
----
-
-## Requirements
-
-- Node.js (LTS)  
-- npm  
-- Flutter SDK  
-- Android SDK / Android Studio  
-- Docker + Docker Compose  
-- PostgreSQL and Redis (containerized in local setup)
-
----
-
-## Target Users
-
-- Gig workers (delivery partners, drivers, freelancers)  
-- Operations/admin teams managing claims and approvals  
-- Fintech operators running payout + protection workflows
-
----
-
-## Core Design Principle
-
-**One Worker Journey = One Unified Financial Operations Pipeline**
-
-All critical user and admin actions must remain synchronized across app, web, backend, and database.
-
----
-
-## Architecture
-
-GigBit uses a modular service architecture across app, web, and backend layers:
-
-- Worker app UX layer (Flutter)  
-- Customer/admin web layer (HTML/CSS/JS)  
-- Shared API and business logic (Node.js + TypeScript)  
-- Transaction and cache layer (PostgreSQL + Redis)
-
-Each module owns a focused responsibility while sharing a common backend contract.
-
----
+1. Landing and user-facing web experience
+2. Admin operations, approvals, and platform management
 
 ## Tech Stack
 
-- Flutter (Mobile App)  
-- HTML/CSS/JavaScript (Web Frontend + Admin Portal)  
-- Node.js + TypeScript (Backend API)  
-- PostgreSQL (Primary data store)  
-- Redis (Caching/queue support)  
+- Flutter (Mobile App)
+- HTML/CSS/JavaScript (Web Frontend + Admin Portal)
+- Node.js + TypeScript (Backend API)
+- PostgreSQL (Primary Database)
+- Redis (Cache / Queue support)
 - Docker Compose (Local orchestration)
 
-![Flutter](https://img.shields.io/badge/Flutter-Mobile%20App-02569B)
-![Node.js](https://img.shields.io/badge/Node.js-Backend-339933)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791)
+## Setup
 
----
+1. Clone repository
+2. Install dependencies
+3. Start infrastructure (PostgreSQL + Redis)
+4. Run backend API
+5. Run web frontend and Flutter app
 
-## Standardized Data & Flows
+### Quick Commands
 
-GigBit standardizes:
+```bash
+# from repo root
+npm run api:install
+npm run api:dev
+```
 
-- Platform identity + logo handling  
-- Approval status transitions  
-- Withdrawal limit/rollover accounting  
-- Insurance and loan request payloads  
-- Notification-trigger event flow
-
-This keeps app and web behavior aligned on every update.
-
----
-
-## Feature Coverage
-
-### Mobile App (Worker)
-
-- Dashboard and platform integrations  
-- Withdrawals with limit tracking  
-- Emergency loan requests and claim history  
-- Micro-insurance claims and contribution tracking  
-- Push/device notifications
-
-### Web (Landing + Admin)
-
-- Public product landing flow  
-- Admin login and guarded operations  
-- Platform management (add/edit/enable/disable)  
-- Loan/insurance/account-deletion approvals  
-- Operational history and commission views
-
----
-
-## Sync & Automation
-
-GigBit supports real-time or near-real-time sync patterns for:
-
-- Approval results from admin to app  
-- Claims and withdrawal history updates  
-- Platform changes reflected across channels  
-- Backend-driven push notification triggers
-
----
-
-## Security
-
-- Role-based admin access control in portal workflows  
-- OTP-based verification paths (admin/user flows)  
-- No hardcoded user credentials in source  
-- Environment-driven secrets management
-
----
-
-## Error Handling
-
-- Centralized backend validation for critical finance operations  
-- User-safe error messaging in app/web UI  
-- Defensive checks for limits, caps, and eligibility logic  
-- Consistent status handling to avoid partial workflow state
-
----
-
-## Project Status
-
-- App and web working in shared production-like flow  
-- Admin + worker lifecycle integration implemented  
-- Core fintech operations (withdrawal/loan/insurance) implemented  
-- Deployment setup and environment-based configuration active
-
----
-
-## Authors
-
-- Team Finovators
-
----
+```bash
+# mobile app
+cd app/frontend/flutter_app
+flutter pub get
+flutter run
+```
 
 ## License
 
-MIT License
+This project is licensed under the MIT License. See [LICENSE](LICENSE).
